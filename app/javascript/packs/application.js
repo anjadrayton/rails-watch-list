@@ -9,6 +9,21 @@ require("@rails/activestorage").start()
 require("channels")
 
 
+const { environment } = require('@rails/webpacker')
+
+// Bootstrap 4 has a dependency over jQuery & Popper.js:
+const webpack = require('webpack')
+environment.plugins.prepend('Provide',
+  new webpack.ProvidePlugin({
+    $: 'jquery',
+    jQuery: 'jquery',
+    Popper: ['popper.js', 'default']
+  })
+)
+import 'bootstrap';
+
+module.exports = environment
+
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.

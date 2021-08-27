@@ -1,0 +1,14 @@
+<h1>Details</h1>
+<%= @list.name %>
+
+<ul class="list-group">
+  <% @bookmarks.each do |bookmark| %>
+  <% if bookmark.list_id == @list.id %>
+    <li class="list-group-item"><%= "#{bookmark.movie.title}" %></li>
+    <%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  <% end %>
+</ul>
+
+<%= link_to "Add a Movie to #{@list.name}", new_list_bookmark_path(@list) %>
+<%= link_to "Home", root_path %>
